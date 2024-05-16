@@ -16,7 +16,7 @@ services:
     ports:
       - "16001:16001"
     depends_on:
-      - backend
+      - teste_api
   mongodb:
     image: mongo:latest
     ports:
