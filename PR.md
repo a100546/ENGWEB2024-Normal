@@ -84,4 +84,7 @@ Onde o port é modificado para 16000 ou 16001, dependendo se é ex1 ou ex2
 
 Posteriormente foi feito um docker-compose.yml para rodar tudo:
 
-$ docker-compose up -d
+$ docker compose up -d
+
+Para rodar com docker é só preciso substituir na app.js do ex1 o 127.0.0.1 por engweb2024-normal-mongodb-1
+Caso contrário pode utilizar rodando somente npm start em ambas as pastas
