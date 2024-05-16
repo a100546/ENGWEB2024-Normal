@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: teste_db
+  teste_api:
+    build: ./ex1
+    container_name: teste_api
+    ports:
+      - "16000:16000"
+  teste_client:
+    build: ./ex2
+    container_name: teste_client
+    ports:
+      - "16001:16001"
+  mongo-seed:
+    image: mongo
+    volumes:
+      - ./contratos2024.json:/datasets/dataset.json
+    command: mongoimport --host mongodb -d contratos -c contratos --type json --file /datasets/dataset.json --jsonArray

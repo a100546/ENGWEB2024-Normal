@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    .w3-card-4
+        if entidades.length > 0
+            header.w3-container.w3-teal
+                h1 #{title} [#[a(href="/") Voltar]]
+                h3 Entidade Comunicante: #{entidades[0]["entidade_comunicante"]}
+
+            .w3-container 
+            table.w3-table-all.w3-hoverable
+                tr 
+                    th idcontrato
+                    th objectoContrato 
+                    th dataCelebracaoContrato 
+                    th precoContratual
+                    th NIPC_entidade_comunicante 
+                    th entidade_comunicante
+                each e in entidades
+                    tr
+                        td
+                            a(href="/"+e._id)= e._id
+                        td= e.objectoContrato
+                        td= e.dataCelebracaoContrato 
+                        td= e.precoContratual
+                        td
+                            a(href="/entidades/"+e.NIPC_entidade_comunicante)= e.NIPC_entidade_comunicante
+                        td= e.entidade_comunicante
+                - var somatorio_contratos = 0.0
+                each contrato in entidades
+                    - somatorio_contratos += contrato.precoContratual
+
+            p Somatório: #{somatorio_contratos} €
+        else 
+            header.w3-container.w3-indigo
+            h1 [#[a(href="/") Voltar]]
+            p.w3-margin Não há registos relativos à #{title}!

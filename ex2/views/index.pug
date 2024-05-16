@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 #{title}
+
+    .w3-container 
+      table.w3-table-all.w3-hoverable
+        tr 
+          th idcontrato
+          th objectoContrato 
+          th dataCelebracaoContrato 
+          th precoContratual
+          th NIPC_entidade_comunicante 
+          th entidade_comunicante
+        each e in contratos
+          tr 
+            td
+              a(href="/"+e._id)= e._id
+            td= e.objectoContrato
+            td= e.dataCelebracaoContrato 
+            td= e.precoContratual
+            td
+              a(href="/entidades/"+e.NIPC_entidade_comunicante)= e.NIPC_entidade_comunicante
+            td= e.entidade_comunicante
+          
