@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 var mongoose = require('mongoose')
-var mongodb = 'mongodb://127.0.0.1:55913/contratos'
+var mongodb = 'mongodb://127.0.0.1/contratos'
 mongoose.connect(mongodb, {useNewUrlParser: true, useUnifiedTopology:true})
 var db = mongoose.connection
 db.on('error', console.error.bind(console, "MongoDB conection error.."))

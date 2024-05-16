@@ -1,21 +1,30 @@
 version: '3.8'
 
 services:
-  mongo:
-    image: mongo
-    container_name: teste_db
   teste_api:
-    build: ./ex1
-    container_name: teste_api
+    build:
+      context: ./ex1
+      dockerfile: Dockerfile
     ports:
       - "16000:16000"
+    depends_on:
+      - mongodb
   teste_client:
-    build: ./ex2
-    container_name: teste_client
+    build:
+      context: ./ex2
+      dockerfile: Dockerfile
     ports:
       - "16001:16001"
+    depends_on:
+      - backend
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    depends_on:
+      - mongo-seed
   mongo-seed:
-    image: mongo
+    image: mongo:latest
     volumes:
-      - ./contratos2024.json:/datasets/dataset.json
-    command: mongoimport --host mongodb -d contratos -c contratos --type json --file /datasets/dataset.json --jsonArray
+      - ./contratos2024.json:/dataset.json
+    command: mongoimport --host mongodb -d contratos -c contratos --type json --file dataset.json --jsonArray
